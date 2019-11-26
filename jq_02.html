@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+   <script>
+   /*이런 코드도 있으나 몇 브라우저에서 사용 불가능*/
+   $(()=>{
+   })
+
+   $(document).ready(function(){
+   })
+
+   /* 요새는 line17도 귀찮아서 이 코드를 사용함 */
+   $(function(){
+
+       /*
+       [event handler](== click ...etc)
+       누군가 id가 p1인 selector를 마우스로 클릭하면
+       반응을 할 코드를 등록하는 절차.
+       */
+       $("#p1").click(function(e){
+           let t = $("#p1").text()
+           alert(t)
+       })
+
+       /* 1. id가 p2인 tag가 클릭이 되면 */
+       $("#p2").click(function(e){
+        
+        /*
+        2. id가 st_name인 input box에 입력된 값을
+        3. id가 p2인 tag에 표시하라
+        */
+       let t = $("#st_name").val()
+        $("#p2").text(t)
+
+       })
+
+       $("#p3").click(function(){
+           // class chaining 연속해서 계속 function추가 가능
+            $("#p3").css("background-color", "red").css("color", "white")
+       })
+
+       var sw = 1
+       $("#p4").click(function(){
+           if(sw > 0) {
+            $("#p5").css("display","none")
+           }else{
+           $("#p5").css("display","block")
+           }
+           sw *= (-1)
+       })
+       $(".pc").click(function(e){
+
+        alert("class pc가 click")
+
+       })
+
+   })
+ </script>
+ <input id="st_name">
+  <p id="p1"class="pc">본문 1</p>
+  <p id="p2"class="pc">본문 2</p>
+  <p id="p3"class="pc">본문 3</p>
+  <p id="p4"class="pc">본문 4</p>
+  <p id="p5"class="pc">본문 5</p>
+
+
+
+</body>
+</html>

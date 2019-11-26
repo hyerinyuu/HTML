@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+</head>
+<body>
+    <style>
+        
+        .drop-sub {
+            background-color: #ddd;
+            color:black;
+        }
+        nav a {
+            text-decoration: none;
+            display: block;
+            padding: 1rem 1rem;
+            color: #E00;
+        }
+
+        nav a:hover {
+
+            color: #f55;
+               
+        }
+        nav ul {
+
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background-color: #EEE;
+        }
+        .main-menu-box {
+            display:flex;
+        }
+        /* >(꺽쇠) 선택자
+        tag1 tag2 {} : tag1내에 있는 모든 tag2
+        tag1 > tag2 {} : tag1내에 바로 인접한 tag2
+        IE8미만에서는 작동 안됨
+        */
+        .main-menu-box > li{
+
+            border-left: solid 2px pink;
+
+        }
+
+        .main-menu-box li:first-child{
+            border-left : none;
+        }
+
+        .drop-main {
+            position: relative;
+
+        }
+
+        .drop-sub {
+            /* sub menu를 기본으로 보이지 않도록 설정 */
+            visibility: hidden;
+            /* 투명도를 0으로 해서 보이지 않게 함 */
+            opacity: 0;
+            /* drop main에 대하여 위치를 고정하기 위한 속성 */
+            position: absolute;
+            /* position이 absolute일 경우에만 적용 가능함(top, left, width) */
+            top: 100%;
+            left: 0; /* main 메뉴에 대하여 왼쪽정렬 */
+            width: 100%;
+            z-index: -1; /* (-1 : )화면 뒤쪽으로 보냄 */
+            transform: translateY(-2rem);
+            
+            /* all 0.3 : 전체적으로 모든 애니메이션이 0.3초동안 나타남
+            ease-out : 나타날때는 빠르게 점점 느려지게
+            ease-in : 시작은 느리게 빠르게 끝
+            ease-in-out : 자동차가 가속 ~ 감속하는 것처럼(평균속도를 냈다가 끝날때 빠르게)
+            ease-in과 ease-in-out은 효과가 느린편이라서 가급적 0.5s이하로 설정하는 것이 좋음
+            */
+            transition: all 0.3s ease-in-out, visibility 0s linear 0.3s,
+            z-index 0s linear 0.05s; /* 화면 뒤쪽에 있다가 나타날때 0.05초의 간격을 줌 */
+
+        }
+        /* focus : 마우스로 클릭 */
+        .drop-main:focus .drop-sub, 
+        .drop-main:hover .drop-sub {
+            visibility: visible;
+            opacity: 1; /* 0으로 해놔서 안보이다가 1로 줘서 보임 */
+            z-index: 10;
+            transform: translateY(0);
+            transition-delay: 0s, 0s, 0.3s;
+
+        }
+    </style>
+   <nav>
+        <ul class="main-menu-box">
+            <li><a href="#">메인메뉴1</a></li>
+            <li><a href="#">메인메뉴2</a></li>
+            <li class="drop-main">
+                <a href="#">메인메뉴3</a>
+                    <ul class="drop-sub">
+                        <li><a href="#">sub1</a></li>
+                        <li><a href="#">sub2</a></li>
+                        <li><a href="#">sub3</a></li>
+                    </ul>
+
+            </li>
+        </ul>
+
+   </nav> 
+</body>
+</html>
