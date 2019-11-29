@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+    *,html,body {
+        margin:0;
+        padding: 0;
+    }
+    /* 
+    pc 환경에서 다양한 모니터 해상도 때문에 만들어놓은 레이아웃, 메뉴 위치등이
+    흐트러지는 현상이 자주 발생한다.
+    pc 환경에서 width값을 고정하여 페이지를 구성한다.
+    pc : 978px, 1200px로 고정해서 사용하는 추세
+    */
+    html {
+        height: 100%;
+    }
+
+    body{
+        /*
+        width : 978px;
+        */
+        width : 90%;
+        /* y축 == height는 전체화면으로 보이되 contents가 가득차면 자동으로 scroll을 보여라는 코드 */
+        overflow-y: auto;
+        /* body height를 100으로 설정하려면 html도 height를 같이 맞춰줘야함(html은 height가 기본적으로 없음) */
+        height: 100%;
+        margin: 0 auto;
+        border: 1px solid green;
+
+    }
+
+    </style>
+</head>
+<body>
+    <style>
+        div.m-box{
+            border: 2px solid blue;
+            width: 80%;
+            margin: 30px auto;
+
+            /* class m-box를 flex-box의 container로 설정 */
+            /* 전체를 감싼 m-box의 display를 flex로 하면 그 안에 들어있는 모든 코드는 
+            item이 됨 */
+            display: flex;
+            /*
+            flex-direction
+            ==> 기본값은 row이고 column으로 설정하면 위에서 아랫방향으로 배열
+                row : 주축배열
+                column : 교차축배열
+                row-reverse : 오른쪽에서 왼쪽으로 역순 배열(아랍어 등 언어지원용)
+            */
+            flex-direction: row; /*column;*/
+            
+            /*
+            기본값 : nowrap
+            container의 폭이 변동되면 
+            각 item의 폭을 조절하여 한 라인에 있도록 배치한다.
+
+            wrap: container의 폭이 변동되면 
+            item을 줄바꿈하여 여러라인에 배치
+            */
+            flex-wrap: nowrap;
+            /* direction과 wrap을 한꺼번에 지정할때 사용 */
+            flex-flow: row wrap; /* row방향으로 wrap을 설정 */
+        }
+
+        div#d-1 {
+            /* 
+            item에 지정된 flex
+            : item들을 배치할 때 어떤 비율로 표시할 것인가를 지정
+
+            기본값 : flex: auto;
+            자동으로 배율을 조절함.
+            이 flex를 지정하지 않으면 item들의 flex값이 모두 같은 비율로 자동으로 지정됨
+            */
+            flex: 1;
+        }
+        
+        div#d-2 {
+            /*
+            flex에는 3가지 값을 지정할 수 있음
+            1. flex-grow
+            : 내용값에 따라 항목 크기를 크게 할 것인가? grow
+            2. flex-shrink
+            : 내용값이 없으면 항목 크기를 줄일것인가? 
+            3. flex-basis 
+            : 크기를 줄이거나 늘릴때 어떤 기준으로 설정할 것인가? 
+
+            기본값 : flex : 0 1 auto;
+                -> 모든 flex 항목들을 bias 값보다 크지 않게 지정하라는 코드
+
+            flex : auto == flex : 1 1 auto;
+            : 주축방향으로 여유가 있으면 항목들을 늘리고
+            여유 공간만큼 채워서 표현하라는 의미
+
+            flex : 0 0 auto == flex : none
+            : 각 항목의 크기를 자동으로 변경하지 말고 동일한 크기로 지정하라는 의미
+            */
+            flex: 2;
+
+            /*
+            양수로 지정하면 주축방향으로 크기가 flex-basis값 이상으로 커지도록 한다.
+            */
+            flex-grow: 1;
+            /* 
+            남은 공간을 어떻게 배치할까 
+            양수이면 basis로 지정한 값보다 작아진다.
+            */
+            flex-shrink: 1;
+            flex-basis: auto;
+
+            /* 축약형 */
+            flex: 1 1 auto;
+
+            /*
+            grow : 1 = 배율을 1로 지정하고
+            shrink : 1 = 크기가 조절될 때 200px 범위내에서 조절
+            basis: 200px = 기준크기를 200px로 고정
+            */
+            flex: 1 1 200px;
+        }
+
+        div#d-3 {
+            flex: 3;
+        }
+
+
+        div.s-box{
+            width: 10%;
+            margin: 20px;
+            border: 1px solid red;
+        }
+
+        /* box 세로 중앙에 위치하게 하는법 */
+        div#m-box-2 {
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* align-content를 사용하면 box크기가 커짐 */
+        }
+ 
+    </style>
+    <div class="m-box">
+        <div class="s-box" id="d-1">box item1</div>
+        <div class="s-box" id="d-2">box item2</div>
+        <div class="s-box" id="d-3">box item3</div>
+        <div class="s-box" id="d-4">box item4</div>
+        <div class="s-box" id="d-5">box item5</div>
+    </div>
+
+    <p></p>
+    <p></p>
+
+    <div class="m-box" id="m-box-2">
+        <div class="s-box" id="s-1">sub box</div>
+    </div>
+</body>
+</html>

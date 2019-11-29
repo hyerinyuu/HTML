@@ -1,0 +1,31 @@
+<html>
+        <table>
+	
+                <tr>
+                    <th>NO</th>
+                    <th>상품코드</th>
+                    <th>상품명</th>
+                    <th>매입가</th>
+                    <th>판매가</th>
+                    <th>부가세</th>
+                </tr>
+
+                <c:choose>
+                    <c:when test="${empty PROLIST}">
+                        <tr><td calspan="6">데이터가 없음</td></tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${PROLIST}" var="dto" varStatus="info">
+                            <tr class="proContent-body" id="${dto.p_code}">
+                                <td>${info.count}</td>
+                                <td>${dto.p_code}</td>
+                                <td>${dto.p_name}</td>
+                                <td>${dto.p_iprice}</td>
+                                <td>${dto.p_oprice}</td>
+                                <td>${dto.p_vat}</td>
+                            </tr>    
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </table>
+</html>

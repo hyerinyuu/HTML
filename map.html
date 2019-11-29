@@ -1,0 +1,49 @@
+<c:set var="rootPath" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>병원찾기</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        header {
+            margin: 5px auto;
+        }        
+        ul.mainbox {
+            display: flex;
+            text-decoration: none;
+            background-color: white;
+            color: black;
+        }
+        ul.main:hover{
+            background-color: lightgray;
+            color: black;
+
+        }
+        
+        
+
+    </style>
+    <header>
+            <a href="${rootPath}/"><img src=" ${rootPath}/images/logo_300.png" width=300 alt="로고이미지"></a>
+        </header>
+<body>
+    <nav>
+        <ul class="mainbox">
+            <li><a href="${rootPath}/pet/index">소개</a></li>
+            <li><a href="${rootPath}/pet/findhospital">병원찾기</a></li>
+                <ul class="h-s-subbox">
+                    <li class="findhospital"><a href="#">병원찾기</a></li>
+                    <li><a href="#">지도로 찾기</a></li>
+                    <li><a href="#">검색으로 찾기</a></li>
+                </ul>
+            <li><a href="${rootPath}/pet/bloodtest">피검사</a></li>
+            <li><a href="${rootPath}/pet/report">상태보고서</a></li>
+            <li><a href="${rootPath}/pet/comunity">커뮤니티</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
